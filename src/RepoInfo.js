@@ -6,7 +6,8 @@ const RepoInfo = ({ repo }) => {
       license = (
         <span
           className="px-1 py-0 ms-1 d-inline-block btn btn-sm btn-danger"
-          style={{ fontSize: ".6em" }}>
+          style={{ fontSize: ".6em" }}
+        >
           NO LICENSE
         </span>
       );
@@ -15,7 +16,8 @@ const RepoInfo = ({ repo }) => {
       license = (
         <span
           className="px-1 py-0 ms-1 d-inline-block btn btn-sm btn-warning"
-          style={{ fontSize: ".6em" }}>
+          style={{ fontSize: ".6em" }}
+        >
           {repo.licenseInfo.spdxId}
         </span>
       );
@@ -24,7 +26,8 @@ const RepoInfo = ({ repo }) => {
       license = (
         <span
           className="px-1 py-0 ms-1 d-inline-block btn btn-sm btn-outline-success"
-          style={{ fontSize: ".6em" }}>
+          style={{ fontSize: ".6em" }}
+        >
           {repo.licenseInfo.spdxId}
         </span>
       );
@@ -40,15 +43,15 @@ const RepoInfo = ({ repo }) => {
           <p className="small">{repo.description}</p>
         </div>
         <div className="text-nowrap ms-3">
-          {license}
           <span
             className={
               "px-1 py-0 ms-1 d-inline-block btn btn-sm " +
               (repo.viewerSubscription === "SUBSCRIBED"
-                ? "btn-success"
+                ? "btn:success"
                 : "btn-outline-secondary")
             }
-            style={{ fontSize: ".6em" }}>
+            style={{ fontSize: ".6em" }}
+          >
             {repo.viewerSubscription}
           </span>
         </div>

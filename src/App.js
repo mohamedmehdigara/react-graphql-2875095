@@ -9,21 +9,18 @@ function App() {
   let [userName, setUserName] = useState("");
   let [repoList, setRepoList] = useState(null);
   let [pageCount, setPageCount] = useState(10);
-  let [queryString, setQueryString] = useState("");
+  let [queryString, setQueryString] = useState("slides");
   let [totalCount, setTotalCount] = useState(null);
-
   let [startCursor, setStartCursor] = useState(null);
   let [endCursor, setEndCursor] = useState(null);
   let [hasPreviousPage, setHasPreviousPage] = useState(false);
   let [hasNextPage, setHasNextPage] = useState(true);
   let [paginationKeyword, setPaginationKeyword] = useState("first");
   let [paginationString, setPaginationString] = useState("");
-
   const fetchData = useCallback(() => {
     const queryText = JSON.stringify(
       query(pageCount, queryString, paginationKeyword, paginationString)
     );
-
     fetch(github.baseURL, {
       method: "POST",
       headers: github.headers,
@@ -38,11 +35,9 @@ function App() {
         const end = data.data.search.pageInfo?.endCursor;
         const next = data.data.search.pageInfo?.hasNextPage;
         const prev = data.data.search.pageInfo?.hasPreviousPage;
-
         setUserName(viewer.name);
         setRepoList(repos);
         setTotalCount(total);
-
         setStartCursor(start);
         setEndCursor(end);
         setHasNextPage(next);
@@ -60,7 +55,7 @@ function App() {
   return (
     <div className="App container mt-5">
       <h1 className="text-primary">
-        <i className="bi bi-diagram-2-fill"></i> Repos
+        <i className="bi bi-diagram-2-fill"></i>Repos
       </h1>
       <p>Hey there {userName}</p>
       <SearchBox
@@ -91,17 +86,6 @@ function App() {
           ))}
         </ul>
       )}
-
-      <NavButtons
-        start={startCursor}
-        end={endCursor}
-        next={hasNextPage}
-        previous={hasPreviousPage}
-        onPage={(myKeyword, myString) => {
-          setPaginationKeyword(myKeyword);
-          setPaginationString(myString);
-        }}
-      />
     </div>
   );
 }
